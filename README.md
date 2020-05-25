@@ -1,6 +1,45 @@
 # connextconfig
 
-To tidy up
+512Mb RAM
+1 vCPU
+10Gb Disk
+
+Expose ports 22, 80, 443, 4221, 4222
+
+
+```
+sudo fallocate -l 2G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+sudo nano /etc/fstab
+```
+Add this to `/etc/fstab`
+```
+/swapfile swap swap defaults 0 0
+```
+Then continue
+```
+sudo apt update
+sudo apt upgrade -y
+
+sudo apt install docker.io -y
+sudo usermod -aG docker ubuntu
+sudo systemctl enable docker
+sudo reboot
+```
+reconnect
+```
+sudo apt install make -y
+sudo apt install jq -y
+
+rm -rf indra
+git clone https://github.com/connext/indra.git
+cd indra
+INDRA_ETH_PROVIDER="https://rinkeby.infura.io/v3/e7813e36e2ea466f89a0f56fcc340a86" make start
+```
+
+
 
 ```
 ubuntu@nathan:~/indra$ INDRA_ETH_PROVIDER="https://rinkeby.infura.io/v3/e7813e36e2ea466f89a0f56fcc340a86" make start
