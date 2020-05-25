@@ -37,9 +37,15 @@ rm -rf indra
 git clone https://github.com/connext/indra.git
 cd indra
 INDRA_ETH_PROVIDER="https://rinkeby.infura.io/v3/e7813e36e2ea466f89a0f56fcc340a86" make start
+INDRA_ETH_PROVIDER="https://rinkeby.infura.io/v3/e7813e36e2ea466f89a0f56fcc340a86" INDRA_UI="headless" make start
 ```
 
-
+Debugging:
+```
+bash ops/logs.sh node
+bash ops/logs.sh webserver
+make dls
+```
 
 ```
 ubuntu@nathan:~/indra$ INDRA_ETH_PROVIDER="https://rinkeby.infura.io/v3/e7813e36e2ea466f89a0f56fcc340a86" make start
