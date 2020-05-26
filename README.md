@@ -1,12 +1,16 @@
 # connextconfig
 
-512Mb RAM
-1 vCPU
-10Gb Disk
+## Hardware
+
+- 2Gb RAM
+- 2 x 2198MHz vCPU
+- 10Gb Disk
+
+## Firewall
 
 Expose ports 22, 80, 443, 4221, 4222
 
-
+## Commands
 ```
 sudo fallocate -l 2G /swapfile
 sudo chmod 600 /swapfile
@@ -26,25 +30,33 @@ sudo apt upgrade -y
 sudo apt install docker.io -y
 sudo usermod -aG docker ubuntu
 sudo systemctl enable docker
+sudo systemctl start docker
 sudo reboot
 ```
-reconnect
+Then reconnect
 ```
-sudo apt install make -y
-sudo apt install jq -y
-
-rm -rf indra
+docker swarm init
+sudo apt install make jq -y
 git clone https://github.com/connext/indra.git
 cd indra
-INDRA_ETH_PROVIDER="https://rinkeby.infura.io/v3/e7813e36e2ea466f89a0f56fcc340a86" make start
-INDRA_ETH_PROVIDER="https://rinkeby.infura.io/v3/e7813e36e2ea466f89a0f56fcc340a86" INDRA_UI="headless" make start
+bash ops/save-secret.sh
+INDRA_ETH_PROVIDER="https://rinkeby.infura.io/v3/e7813e36e2ea466f89a0f56fcc340a86" make start-prod
+make dls
+bash ops/logs.sh proxy
 ```
 
 Debugging:
 ```
+bash ops/logs.sh proxy
 bash ops/logs.sh node
 bash ops/logs.sh webserver
 make dls
+```
+
+```
+INDRA_ETH_PROVIDER="https://rinkeby.infura.io/v3/e7813e36e2ea466f89a0f56fcc340a86" make start
+SSH_KEY=/home/ubuntu/.ssh/id_rsa bash ops/setup-ubuntu.sh 89.145.160.186
+INDRA_ETH_PROVIDER="https://rinkeby.infura.io/v3/e7813e36e2ea466f89a0f56fcc340a86" INDRA_UI="headless" make start-prod
 ```
 
 ```
