@@ -47,10 +47,14 @@ bash ops/logs.sh proxy
 
 Debugging:
 ```
-bash ops/logs.sh proxy
-bash ops/logs.sh node
-bash ops/logs.sh webserver
 make dls
+bash ops/logs.sh node
+bash ops/logs.sh proxy
+bash ops/logs.sh database
+bash ops/logs.sh logdna
+bash ops/logs.sh nats
+bash ops/logs.sh redis
+bash ops/logs.sh webserver
 ```
 
 ```
