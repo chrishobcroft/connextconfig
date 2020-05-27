@@ -35,11 +35,11 @@ sudo reboot
 ```
 Then reconnect
 ```
-docker swarm init
 sudo apt install make jq -y
 git clone https://github.com/connext/indra.git
 cd indra
 bash ops/save-secret.sh
+git checkout master
 INDRA_ETH_PROVIDER="https://rinkeby.infura.io/v3/e7813e36e2ea466f89a0f56fcc340a86" make start-prod
 make dls
 bash ops/logs.sh proxy
