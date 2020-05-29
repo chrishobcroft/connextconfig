@@ -39,10 +39,13 @@ wget https://github.com/connext/indra/archive/indra-6.6.2.tar.gz
 tar -xzf indra-6.6.2.tar.gz
 cd indra-indra-6.6.2
 bash ops/save-secret.sh
+```
+Send ETH and CXT to the node's address
 
+```
 INDRA_ETH_PROVIDER="https://rinkeby.infura.io/v3/e7813e36e2ea466f89a0f56fcc340a86" make start-prod
 make dls
-bash ops/logs.sh proxy
+bash ops/logs.sh node
 
 
 
